@@ -48,14 +48,12 @@ const Task = ({ task }: { task: RouterOutputs["todos"]["getAll"][0] }) => {
   return (
     <tr key={task.id}>
       <td>
-        <h3 className="max-w-xs break-words font-semibold first-letter:uppercase">
+        <h3 className="  font-semibold first-letter:uppercase">
           {task?.content}
         </h3>
       </td>
-      <td>
-        <p className="max-w-xs break-words first-letter:uppercase">
-          {task?.description}
-        </p>
+      <td className="w-full whitespace-pre-wrap break-words">
+        <p className="first-letter:uppercase">{task?.description}</p>
       </td>
       <td>
         {task.done === true ? (
