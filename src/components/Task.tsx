@@ -48,12 +48,12 @@ const Task = ({ task }: { task: RouterOutputs["todos"]["getAll"][0] }) => {
   return (
     <tr key={task.id}>
       <td>
-        <h3 className="break-words font-semibold first-letter:uppercase">
+        <h3 className="max-w-xs break-words font-semibold first-letter:uppercase">
           {task?.content}
         </h3>
       </td>
       <td>
-        <p className="whitespace-normal break-words first-letter:uppercase">
+        <p className="max-w-xs break-words first-letter:uppercase">
           {task?.description}
         </p>
       </td>
