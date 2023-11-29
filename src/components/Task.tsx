@@ -1,6 +1,7 @@
 "use client";
-import { FormEventHandler, useState } from "react";
+import { useState } from "react";
 import Modal from "./Modal";
+import type { FormEventHandler } from "react";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { useSession } from "next-auth/react";
 import { api, type RouterOutputs } from "../utils/api";

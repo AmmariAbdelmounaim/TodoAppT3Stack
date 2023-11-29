@@ -15,7 +15,6 @@ const TodoList = ({ tasks }: { tasks: RouterOutputs["todos"]["getAll"] }) => {
   return (
     <div className="overflow-x-auto">
       <table className="table w-full">
-        {/* head */}
         <thead>
           <tr>
             <th>Tasks</th>

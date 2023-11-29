@@ -2,9 +2,10 @@
 
 import { AiOutlinePlus } from "react-icons/ai";
 import Modal from "./Modal";
-import { FormEventHandler, useState } from "react";
+import type { FormEventHandler } from "react";
+import { useState } from "react";
 import { useSession } from "next-auth/react";
-import { api, type RouterOutputs } from "../utils/api";
+import { api } from "../utils/api";
 
 const AddTask = () => {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
