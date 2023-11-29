@@ -1,8 +1,8 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 
-import { api, type RouterOutputs } from "../utils/api";
+import { api } from "../utils/api";
 import { Header } from "../components/Header";
 import AddTask from "../components/AddTask";
 import TodoList from "../components/TodoList";
@@ -16,7 +16,6 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Header />
         <Content />
       </main>
     </>
@@ -24,8 +23,6 @@ const Home: NextPage = () => {
 };
 
 export default Home;
-
-type Todo = RouterOutputs["todos"]["getAll"][0];
 
 const Content: React.FC = () => {
   const { data: sessionData } = useSession();
@@ -37,15 +34,30 @@ const Content: React.FC = () => {
   return (
     <>
       {sessionData?.user ? (
-        <main className="mx-auto mt-4 max-w-4xl">
-          <div className="my-5 flex flex-col gap-4 text-center">
-            <AddTask />
+        <main className="h-screen bg-primary-content">
+          <Header />
+          <div className="mx-auto mt-4 max-w-4xl px-4">
+            <div className="my-5 flex flex-col gap-4 text-center">
+              <AddTask />
+            </div>
+            <TodoList tasks={todos ? todos : []} />
           </div>
-          <TodoList tasks={todos ? todos : []} />
         </main>
       ) : (
-        <main className=" flex h-screen flex-grow items-center justify-center">
-          <h1 className="text-3xl">Task management app</h1>
+        <main className="flex h-screen flex-col items-center justify-center bg-primary-content px-4 sm:px-6 lg:px-8">
+          <h1 className="mb-4 text-center text-4xl font-bold text-primary sm:text-5xl">
+            Welcome to TodoMaster
+          </h1>
+          <p className="mb-6 px-4 text-center text-base text-secondary sm:text-lg">
+            Organize your tasks, manage your time, and increase productivity
+            with TodoMaster.
+          </p>
+          <button
+            onClick={() => void signIn()}
+            className="btn btn-primary px-4 py-2 text-sm sm:px-6 sm:py-3 sm:text-base"
+          >
+            Sign In to Your Account
+          </button>
         </main>
       )}
     </>

@@ -25,9 +25,17 @@ const TodoList = ({ tasks }: { tasks: RouterOutputs["todos"]["getAll"] }) => {
           </tr>
         </thead>
         <tbody>
-          {todos?.map((task) => (
-            <Task key={task.id} task={task} />
-          ))}
+          {todos && todos.length > 0 ? (
+            todos.map((task) => <Task key={task.id} task={task} />)
+          ) : (
+            <tr>
+              <td colSpan={4} className="py-4 text-center">
+                <span className="text-lg italic text-gray-500">
+                  There are no todos yet.
+                </span>
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>

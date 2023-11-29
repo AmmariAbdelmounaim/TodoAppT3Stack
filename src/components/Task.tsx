@@ -46,9 +46,17 @@ const Task = ({ task }: { task: RouterOutputs["todos"]["getAll"][0] }) => {
 
   return (
     <tr key={task.id}>
-      <td className="w-1/4">{task?.content}</td>
-      <td className="w-1/4">{task?.description}</td>
-      <td className="w-1/4">
+      <td>
+        <h3 className="break-words font-semibold first-letter:uppercase">
+          {task?.content}
+        </h3>
+      </td>
+      <td>
+        <p className="whitespace-normal break-words first-letter:uppercase">
+          {task?.description}
+        </p>
+      </td>
+      <td>
         {task.done === true ? (
           <button
             className="btn btn-outline btn-success"
@@ -63,7 +71,7 @@ const Task = ({ task }: { task: RouterOutputs["todos"]["getAll"][0] }) => {
           </button>
         ) : (
           <button
-            className="btn btn-outline btn-warning"
+            className="btn btn-outline btn-error"
             onClick={() => {
               editTodo.mutate({
                 id: task.id,
@@ -75,52 +83,57 @@ const Task = ({ task }: { task: RouterOutputs["todos"]["getAll"][0] }) => {
           </button>
         )}
       </td>
-      <td className="1/4 flex gap-5 ">
-        <FiEdit
-          onClick={() => setOpenModalEdit(true)}
-          cursor="pointer"
-          className="text-blue-500"
-          size={25}
-        />
-        <Modal modalOpen={openModalEdit} setModalOpen={setOpenModalEdit}>
-          <form onSubmit={handleSubmitEditTodo}>
-            <h3 className="text-lg font-bold">Edit task</h3>
-            <div className="modal-action flex flex-col items-center gap-2">
-              <input
-                value={taskToEdit}
-                onChange={(e) => setTaskToEdit(e.target.value)}
-                type="text"
-                placeholder="Type here"
-                className="input input-bordered ml-[8px] w-full"
-              />
-              <textarea
-                value={descriptionToEdit}
-                onChange={(e) => setDescriptionToEdit(e.target.value)}
-                placeholder="Type Description"
-                className="textarea textarea-bordered w-full "
-              />
-              <button type="submit" className="btn">
-                Submit
+      <td>
+        <div className="flex gap-5">
+          <FiEdit
+            onClick={() => setOpenModalEdit(true)}
+            cursor="pointer"
+            className="text-blue-500"
+            size={25}
+          />
+          <Modal modalOpen={openModalEdit} setModalOpen={setOpenModalEdit}>
+            <form onSubmit={handleSubmitEditTodo}>
+              <h3 className="text-lg font-bold">Edit task</h3>
+              <div className="modal-action flex flex-col items-center gap-2">
+                <input
+                  value={taskToEdit}
+                  onChange={(e) => setTaskToEdit(e.target.value)}
+                  type="text"
+                  placeholder="Type here"
+                  className="input input-bordered ml-[8px] w-full"
+                />
+                <textarea
+                  value={descriptionToEdit}
+                  onChange={(e) => setDescriptionToEdit(e.target.value)}
+                  placeholder="Type Description"
+                  className="textarea textarea-bordered w-full "
+                />
+                <button type="submit" className="btn">
+                  Submit
+                </button>
+              </div>
+            </form>
+          </Modal>
+          <FiTrash2
+            onClick={() => setOpenModalDeleted(true)}
+            cursor="pointer"
+            className="text-red-500"
+            size={25}
+          />
+          <Modal
+            modalOpen={openModalDeleted}
+            setModalOpen={setOpenModalDeleted}
+          >
+            <h3 className="text-lg">
+              Are you sure, you want to delete this task?
+            </h3>
+            <div className="modal-action">
+              <button onClick={() => handleDeleteTask()} className="btn">
+                Yes
               </button>
             </div>
-          </form>
-        </Modal>
-        <FiTrash2
-          onClick={() => setOpenModalDeleted(true)}
-          cursor="pointer"
-          className="text-red-500"
-          size={25}
-        />
-        <Modal modalOpen={openModalDeleted} setModalOpen={setOpenModalDeleted}>
-          <h3 className="text-lg">
-            Are you sure, you want to delete this task?
-          </h3>
-          <div className="modal-action">
-            <button onClick={() => handleDeleteTask()} className="btn">
-              Yes
-            </button>
-          </div>
-        </Modal>
+          </Modal>
+        </div>
       </td>
     </tr>
   );
