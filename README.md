@@ -3,7 +3,7 @@
 ## Project Description
 
 TodoMaster is an advanced task management web application designed to streamline task organization, enhance time management, and boost productivity. Hosted on Vercel, it offers a seamless and responsive user experience, making it an ideal solution for individuals and teams looking to manage their tasks and to-dos efficiently.
-Check out the live app hosted on Vercel: [Vercel App Link]([#](https://todo-app-rho-three-24.vercel.app/)).
+Check out the live app hosted on Vercel: [https://todo-app-rho-three-24.vercel.app/]([#]()).
 
 
 ## Technologies Used
